@@ -21,9 +21,22 @@ defmodule ApiWeb.Router do
   end
 
   scope "/api", ApiWeb do
-    resources "/users", UserController, except: [:index, :edit, :new, :update]
-    resources "/clocks", ClockController, except: [:new, :index, :edit, :create, :delete]
-    resources "/workingtimes", WorkingtimesController, except: [:edit, :update, :new]
+
+    get "/users", UserController, :showByEmailAndUsername
+    get "/users/:id", UserController, :show
+    post "/users", UserController, :create
+    put "/users/:id", UserController, :update
+    delete "/users/:id", UserController, :delete
+
+    #todo
+    get "/workingtimes/:id", WorkingtimeController, :show
+    post "/workingtimes/:id", WorkingtimeController, :create
+    put "/workingtimes/:id", WorkingtimeController, :update
+    delete "/workingtimes/:id", WorkingtimeController, :delete
+
+
+    get "/clocks/:id", ClockController, :show
+    post "/clocks", ClockController, :create
   end
 
   # Other scopes may use custom stacks.

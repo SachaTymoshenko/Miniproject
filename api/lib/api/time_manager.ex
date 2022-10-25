@@ -37,6 +37,11 @@ defmodule Api.TimeManager do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
+
+  def get_userByEmailAndUserName!(email, username), do: Repo.get_by!(User,email: email,username: username)
+  def get_userByUsername!(username), do: Repo.get!(User, username)
+
+
   @doc """
   Creates a user.
 

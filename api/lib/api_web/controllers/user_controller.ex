@@ -11,8 +11,8 @@ defmodule ApiWeb.UserController do
     render(conn, "index.json", users: users)
   end
 
-  def create(conn, %{"user" => user_params}) do
-    with {:ok, %User{} = user} <- TimeManager.create_user(user_params) do
+  def create(conn, params) do
+    with {:ok, %User{} = user} <- TimeManager.create_user(params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.user_path(conn, :show, user))
@@ -26,7 +26,12 @@ defmodule ApiWeb.UserController do
   end
 
   def showByEmailAndUsername(conn, %{"email" => email, "username" => username}) do
-    user = TimeManager.get_user!(email) && TimeManager.get_username!(username)
+    user = TimeManager.get_userByEmailAndUserName!(email, username)
+    render(conn, "show.json", user: user)
+  end
+
+  def showByUsername(conn, %{"username" => username}) do
+    user = TimeManager.get_userByUsername!(username)
     render(conn, "show.json", user: user)
   end
 
