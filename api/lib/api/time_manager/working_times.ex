@@ -5,7 +5,7 @@ defmodule Api.TimeManager.WorkingTimes do
   schema "workingtimes" do
     field :end, :naive_datetime
     field :start, :naive_datetime
-    field :userID, :id
+    field :user, :id
 
     timestamps()
   end

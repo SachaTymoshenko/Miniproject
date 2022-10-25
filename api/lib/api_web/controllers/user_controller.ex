@@ -1,3 +1,5 @@
+import Ecto.Query, only: [from: 2]
+
 defmodule ApiWeb.UserController do
   use ApiWeb, :controller
 

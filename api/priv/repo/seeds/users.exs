@@ -1,5 +1,4 @@
-alias Api.Repo
-alias Api.TimeManager
+Api.Repo.delete_all Api.TimeManager.User
 
 Api.Repo.insert!(%Api.TimeManager.User{
   username: "username1",
