@@ -25,6 +25,11 @@ defmodule ApiWeb.UserController do
     render(conn, "show.json", user: user)
   end
 
+  def showByEmailAndUsername(conn, %{"email" => email, "username" => username}) do
+    user = TimeManager.get_user!(email) && TimeManager.get_username!(username)
+    render(conn, "show.json", user: user)
+  end
+
   def update(conn, %{"id" => id, "user" => user_params}) do
     user = TimeManager.get_user!(id)
 

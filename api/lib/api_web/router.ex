@@ -20,6 +20,12 @@ defmodule ApiWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", ApiWeb do
+    resources "/users", UserController, except: [:index, :edit, :new, :update]
+    resources "/clocks", ClockController, except: [:new, :index, :edit, :create, :delete]
+    resources "/workingtimes", WorkingtimesController, except: [:edit, :update, :new]
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", ApiWeb do
   #   pipe_through :api
