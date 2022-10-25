@@ -1,3 +1,5 @@
+import Ecto.Query, only: [from: 2]
+
 defmodule ApiWeb.UserController do
   use ApiWeb, :controller
 
@@ -25,8 +27,8 @@ defmodule ApiWeb.UserController do
     render(conn, "show.json", user: user)
   end
 
-  def showByEmailAndUsername(conn, %{"email" => email, "username" => username}) do
-    user = TimeManager.get_user!(email) && TimeManager.get_username!(username)
+  def showWithEmail(conn, %{"email" => email}) do
+    user = TimeManager.get_user_with_email!(email)
     render(conn, "show.json", user: user)
   end
 
